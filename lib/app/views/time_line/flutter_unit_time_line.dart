@@ -1,7 +1,7 @@
+import 'package:app/app.dart';
 import 'package:dash_painter/dash_painter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_unit/app/blocs/global/global_bloc.dart';
 import 'package:wrapper/wrapper.dart';
 
 import 'model/time_node.dart';
@@ -174,7 +174,7 @@ class TimeLineNode extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Color themeColor = BlocProvider.of<GlobalBloc>(context).state.themeColor;
+    Color themeColor = BlocProvider.of<AppConfigBloc>(context).state.themeColor.color;
 
     return IntrinsicHeight(
       child: Row(

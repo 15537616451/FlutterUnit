@@ -1,14 +1,10 @@
 /// create by 张风捷特烈 on 2020-04-13
 /// contact me by email 1981462002@qq.com
 /// 说明: ...
+import 'package:app/app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_unit/app/res/toly_icon.dart';
-import 'package:flutter_unit/app/router/router_utils.dart';
 import 'package:flutter_unit/app/views/time_line/flutter_unit_time_line.dart';
-import 'package:flutter_unit/components/permanent/circle.dart';
-import 'package:flutter_unit/components/permanent/circle_image.dart';
-import 'package:flutter_unit/components/permanent/feedback_widget.dart';
-import 'package:flutter_unit/components/permanent/panel.dart';
+import 'package:toly_ui/toly_ui.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutAppPage extends StatelessWidget {
@@ -16,47 +12,52 @@ class AboutAppPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Stack(
-            children: <Widget>[
-              Container(
-                height: 150,
-                width: MediaQuery.of(context).size.width,
-                margin: const EdgeInsets.only(bottom: 50),
-                child: Image.asset(
-                  'assets/images/sabar.webp',
-                  fit: BoxFit.cover,
+    return Theme(
+      data: ThemeData(
+        brightness: Brightness.light
+      ),
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        body: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Stack(
+              children: <Widget>[
+                Container(
+                  height: 150,
+                  width: MediaQuery.of(context).size.width,
+                  margin: const EdgeInsets.only(bottom: 50),
+                  child: Image.asset(
+                    'assets/images/sabar.webp',
+                    fit: BoxFit.cover,
+                  ),
+                ),
+                _buildBar(context),
+                Positioned(
+                    bottom: 0,
+                    left: 50,
+                    child: FeedbackWidget(
+                      onEnd : (){
+                        Navigator.push(context, SlidePageRoute(child: const FlutterUnitTimeLine()));
+                      },
+                      child: CircleImage(
+                        size: 100,
+                        shadowColor: Theme.of(context).primaryColor,
+                        image: const AssetImage('assets/images/icon_head.webp'),
+                      ),
+                    )),
+              ],
+            ),
+            Expanded(
+              child: SingleChildScrollView(
+                child: Container(
+                  margin: const EdgeInsets.all(24),
+                  child: _buildInfo(),
                 ),
               ),
-              _buildBar(context),
-              Positioned(
-                  bottom: 0,
-                  left: 50,
-                  child: FeedbackWidget(
-                    onEnd : (){
-                      Navigator.push(context, Right2LeftRouter(child: const FlutterUnitTimeLine()));
-                    },
-                    child: CircleImage(
-                      size: 100,
-                      shadowColor: Theme.of(context).primaryColor,
-                      image: const AssetImage('assets/images/icon_head.webp'),
-                    ),
-                  )),
-            ],
-          ),
-          Expanded(
-            child: SingleChildScrollView(
-              child: Container(
-                margin: const EdgeInsets.all(24),
-                child: _buildInfo(),
-              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
@@ -115,7 +116,7 @@ class AboutAppPage extends StatelessWidget {
             children: <Widget>[
               FeedbackWidget(
                   onPressed: () =>
-                      _launchURL("https://github_model.com/toly1994328/FlutterUnit"),
+                      _launchURL("https://github.com/toly1994328/FlutterUnit"),
                   child: Wrap(
                     direction: Axis.vertical,
                     crossAxisAlignment: WrapCrossAlignment.center,
@@ -178,7 +179,7 @@ class AboutAppPage extends StatelessWidget {
             InfoPanel(
               title: 'Flutter Unit 2.0 ',
               info:
-                  '○  317 的 Flutter 组件收录和详情介绍。\n'
+                  '○  317 个 Flutter 组件收录和详情介绍。\n'
                   '○  绘制集录用于收录绘制相关的优秀示例。\n'
                   '○  要点集录用于收录 Flutter 相关的小知识。\n'
                   '○  时光轴，查看 FlutterUnit 重要事件。\n'
@@ -201,6 +202,7 @@ class InfoPanel extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Row(
           crossAxisAlignment: CrossAxisAlignment.center,

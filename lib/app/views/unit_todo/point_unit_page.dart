@@ -1,11 +1,6 @@
-
-
+import 'package:app/app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_unit/app/router/unit_router.dart';
-import 'package:flutter_unit/components/permanent/circle_image.dart';
-import 'package:flutter_unit/components/permanent/feedback_widget.dart';
-import 'package:flutter_unit/components/permanent/text_typer.dart';
-
+import 'package:toly_ui/toly_ui.dart';
 
 class BugUnitPage extends StatelessWidget {
   const BugUnitPage({Key? key}) : super(key: key);
@@ -31,7 +26,7 @@ class BugUnitPage extends StatelessWidget {
               children: <Widget>[
                 FeedbackWidget(
                   onPressed: (){
-                    Navigator.of(context).pushNamed(UnitRouter.issues_point);
+                    // Navigator.of(context).pushNamed(UnitRouter.issues_point);
                   },
                   child: const CircleImage(
                     image: AssetImage('assets/images/icon_head.webp'),
@@ -66,7 +61,6 @@ class BugUnitPage extends StatelessWidget {
                         blurRadius: 1)
                   ],
                   color: Colors.white,
-//              color: Theme.of(context).primaryColor,
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                 ),

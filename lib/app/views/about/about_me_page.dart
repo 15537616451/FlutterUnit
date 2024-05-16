@@ -1,10 +1,10 @@
 /// create by 张风捷特烈 on 2020-04-13
 /// contact me by email 1981462002@qq.com
 /// 说明: ...
+import 'package:app/app.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_unit/app/res/toly_icon.dart';
-import 'package:flutter_unit/components/permanent/circle_image.dart';
-import 'package:flutter_unit/components/permanent/feedback_widget.dart';
+import 'package:toly_ui/toly_ui.dart';
+
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutMePage extends StatelessWidget {
@@ -12,7 +12,11 @@ class AboutMePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return Theme(
+        data: ThemeData(
+        brightness: Brightness.light
+    ),
+    child:Scaffold(
       backgroundColor: Colors.white,
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -54,7 +58,7 @@ class AboutMePage extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ));
   }
 
   Widget _buildBar(BuildContext context) {
@@ -156,7 +160,7 @@ class AboutMePage extends StatelessWidget {
             )),
         FeedbackWidget(
             onPressed: () =>
-                _launchURL("https://github_model.com/toly1994328"),
+                _launchURL("https://github.com/toly1994328"),
             child: Wrap(
               direction: Axis.vertical,
               crossAxisAlignment: WrapCrossAlignment.center,
